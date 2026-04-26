@@ -1,1 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4C1D95">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Kotak Hadiah Misteri - SURAT4D</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+        body { overflow-x: hidden; margin: 0; padding: 0; }
+        .box-hover { transition: all 0.3s ease; }
+        .box-hover:hover { transform: scale(1.05) translateY(-8px); }
+        .box-hover:active { transform: scale(0.95); }
+        .box-locked  { opacity: 0.25; transform: scale(0.88); cursor: not-allowed; pointer-events: none; filter: grayscale(60%); }
+        @keyframes fadeIn  { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes bounce  { 0%,100%{transform:translateY(-5px);}50%{transform:translateY(5px);} }
+        @keyframes pulse   { 0%,100%{opacity:1;}50%{opacity:0.5;} }
+        @keyframes spin    { to{transform:rotate(360deg);} }
+        @keyframes blink   { 0%,50%,100%{opacity:1;}25%,75%{opacity:0.3;} }
+        @keyframes glow    { 0%,100%{box-shadow:0 0 20px rgba(251,191,36,.5),0 0 40px rgba(251,191,36,.3);}
+                             50%{box-shadow:0 0 40px rgba(251,191,36,.8),0 0 80px rgba(251,191,36,.5);} }
+        @keyframes float   { 0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+        @keyframes shake   { 0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);} }
+        .animate-bounce-slow { animation:bounce 1.2s ease-in-out infinite; }
+        .animate-pulse  { animation:pulse 2s infinite; }
+        .animate-spin-slow { animation:spin 3s linear infinite; }
+        .animate-blink  { animation:blink 1.5s infinite; }
+        .animate-glow   { animation:glow 2s infinite; }
+        .animate-float  { animation:float 3s ease-in-out infinite; }
+        .animate-shake  { animation:shake 0.4s ease-in-out; }
+        button { -webkit-touch-callout:none; user-select:none; touch-action:manipulation; }
+        input  { font-size:16px!important; -webkit-appearance:none; }
+        #bg-stars { position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden; }
+        .star  { position:absolute;border-radius:50%;background:white;animation:pulse 2s infinite; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900">
 
+<div id="bg-stars"></div>
+<div id="app" class="min-h-screen flex items-center justify-center p-4 relative z-10"></div>
+
+<!-- Live Chat Button -->
+<a href="https://static.zdassets.com/web_widget/latest/liveChat.html?v=10#key=surat4dcom.zendesk.com&settings=JTdCJTIyd2ViV2lkZ2V0JTIyJTNBJTdCJTIyY2hhdCUyMiUzQSU3QiUyMnRpdGxlJTIyJTNBbnVsbCUyQyUyMm1lbnVPcHRpb25zJTIyJTNBJTdCJTIyZW1haWxUcmFuc2NyaXB0JTIyJTNBdHJ1ZSU3RCUyQyUyMmRlcGFydG1lbnRzJTIyJTNBJTdCJTdEJTJDJTIycHJlY2hhdEZvcm0lMjIlM0ElN0IlMjJkZXBhcnRtZW50TGFiZWwlMjIlM0FudWxsJTJDJTIyZ3JlZXRpbmclMjIlM0FudWxsJTdEJTJDJTIyb2ZmbGluZUZvcm0lMjIlM0ElN0IlMjJncmVldGluZyUyMiUzQW51bGwlN0QlMkMlMjJjb25jaWVyZ2UlMjIlM0ElN0IlMjJhdmF0YXJQYXRoJTIyJTNBbnVsbCUyQyUyMm5hbWUlMjIlM0FudWxsJTJDJTIydGl0bGUlMjIlM0FudWxsJTdEJTdEJTJDJTIyY29sb3IlMjIlM0ElN0IlMjJhcnRpY2xlTGlua3MlMjIlM0ElMjIlMjIlMkMlMjJidXR0b24lMjIlM0ElMjIlMjIlMkMlMjJoZWFkZXIlMjIlM0ElMjIlMjIlMkMlMjJsYXVuY2hlciUyMiUzQSUyMiUyMiUyQyUyMmxhdW5jaGVyVGV4dCUyMiUzQSUyMiUyMiUyQyUyMnJlc3VsdExpc3RzJTIyJTNBJTIyJTIyJTJDJTIydGhlbWUlMjIlM0FudWxsJTdEJTdEJTdE&&locale=en-gb&title=Web%20Widget%20Live%20Chat"
+   target="_blank" rel="noopener noreferrer"
+   style="position:fixed;bottom:24px;right:24px;z-index:9999;width:60px;height:60px;
+          background:linear-gradient(135deg,#22c55e,#059669);border-radius:50%;
+          box-shadow:0 8px 32px rgba(34,197,94,.4);display:flex;align-items:center;
+          justify-content:center;text-decoration:none;animation:pulse 2s infinite;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+    </svg>
+    <span style="position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#ef4444;border-radius:50%;animation:pulse 1s infinite;"></span>
+</a>
+
+<script>
+// ============================================================
+// KONFIGURASI
+// ============================================================
+var CLAIM_URL = 'https://suratkacang.com/'; // <-- Ganti URL situs Anda
+
+// ============================================================
+// DATA
+// ============================================================
+var emojis = {
+    gift:'\uD83C\uDF81', money1:'\uD83D\uDCB5', money2:'\uD83D\uDCB8',
+    money3:'\uD83D\uDCB0', party1:'\uD83C\uDF89', party2:'\uD83C\uDF8A',
+    star:'\u2B50', sparkle:'\u2728', game:'\uD83C\uDFAE',
+    wave:'\uD83D\uDC4B', back:'\u2190', rocket:'\uD83D\uDE80',
+    trophy:'\uD83C\uDFC6', lock:'\uD83D\uDD12', warning:'\u26A0\uFE0F'
+};
+
+var prizes = [
+    { id:1, title:'Rp 50.000', content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Uang Tunai',    icon:emojis.money1, color:'from-green-400 to-emerald-600' },
+    { id:2, title:'Rp 400.000', content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Uang Tunai',    icon:emojis.money1, color:'from-green-500 to-emerald-700' },
+    { id:3, title:'Rp 75.000',  content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Uang Tunai',    icon:emojis.money1, color:'from-teal-400 to-cyan-600'     },
+    { id:4, title:'Rp 25.000', content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Uang Tunai',    icon:emojis.money2, color:'from-blue-400 to-cyan-600'     },
+    { id:5, title:'Rp 150.000', content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Uang Tunai',    icon:emojis.money2, color:'from-blue-500 to-indigo-600'   },
+    { id:6, title:'Rp 200.000', content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Uang Tunai',    icon:emojis.money3, color:'from-purple-500 to-pink-600'   },
+    { id:7, title:'Rp 450.000', content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Hadiah Spesial',icon:emojis.money3, color:'from-yellow-400 to-amber-600'  },
+    { id:8, title:'Rp 500.000', content:'SCREENSHOT & KIRIM BUKTI KE LIVECHAT', category:'Grand Prize',   icon:emojis.trophy, color:'from-indigo-500 to-purple-700' }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+var state = {
+    showWelcome:    true,
+    userId:         '',
+    isLoggedIn:     false,
+    shuffledPrizes: [],
+    hasOpened:      false,
+    revealedPrize:  null,
+    isReturning:    false,   // true jika ID ini sudah pernah main sebelumnya
+    showAllPrizes:  false,
+    isAnimating:    false
+};
+
+// ============================================================
+// STORAGE — tersimpan per User ID
+// ============================================================
+function storageKey(uid) { return 'surat4d_prize_' + uid; }
+
+function savePrize(uid, prize) {
+    try { localStorage.setItem(storageKey(uid), JSON.stringify(prize)); } catch(e) {}
+}
+
+function loadPrize(uid) {
+    try {
+        var raw = localStorage.getItem(storageKey(uid));
+        return raw ? JSON.parse(raw) : null;
+    } catch(e) { return null; }
+}
+
+// ============================================================
+// UTILITY
+// ============================================================
+function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length-1; i > 0; i--) {
+        var j = Math.floor(Math.random()*(i+1)), t = a[i]; a[i]=a[j]; a[j]=t;
+    }
+    return a;
+}
+
+function escHtml(str) {
+    return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ============================================================
+// BACKGROUND
+// ============================================================
+function renderBg() {
+    var bg = document.getElementById('bg-stars'), html = '';
+    for (var i=0; i<40; i++) {
+        var sz=Math.random()*3+1, x=Math.random()*100, y=Math.random()*100, dl=Math.random()*2;
+        html += '<div class="star" style="width:'+sz+'px;height:'+sz+'px;left:'+x+'%;top:'+y+'%;opacity:'+(Math.random()*.6+.1)+';animation-delay:'+dl+'s"></div>';
+    }
+    html += '<div style="position:absolute;top:15%;left:5%;font-size:2rem;opacity:.12;animation:pulse 3s infinite;">'+emojis.star+'</div>';
+    html += '<div style="position:absolute;top:60%;right:8%;font-size:2.5rem;opacity:.10;animation:pulse 2.5s .5s infinite;">'+emojis.sparkle+'</div>';
+    html += '<div style="position:absolute;bottom:15%;left:20%;font-size:1.8rem;opacity:.10;animation:pulse 4s 1s infinite;">'+emojis.star+'</div>';
+    bg.innerHTML = html;
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function render() {
+    var app = document.getElementById('app');
+    app.innerHTML = '';
+
+    /* -------- WELCOME -------- */
+    if (state.showWelcome) {
+        var d = document.createElement('div');
+        d.className = 'max-w-lg w-full text-center relative z-10 px-4 fade-in';
+        d.innerHTML =
+            '<div class="mb-6">' +
+              '<div class="inline-block bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 p-1 rounded-3xl animate-glow mb-4">' +
+                '<div class="bg-gradient-to-br from-purple-900 to-indigo-900 px-8 py-4 rounded-3xl">' +
+                  '<h1 class="text-5xl sm:text-6xl font-black text-yellow-400 animate-blink" style="text-shadow:0 0 30px rgba(251,191,36,.8);">SURAT4D</h1>' +
+                '</div></div>' +
+            '</div>' +
+            '<div class="mb-6 animate-float">' +
+              '<div class="text-7xl sm:text-8xl mb-3">'+emojis.gift+'</div>' +
+              '<h2 class="text-4xl sm:text-5xl font-black text-yellow-400 mb-2" style="text-shadow:0 0 20px rgba(251,191,36,.5);">MYSTERY BOX</h2>' +
+            '</div>' +
+            '<div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-2xl border-2 border-yellow-400/40 mb-4">' +
+              '<p class="text-white text-lg font-bold mb-2">'+emojis.gift+' Selamat Datang di Mystery Box '+emojis.gift+'</p>' +
+              '<p class="text-yellow-200 text-sm mb-1">Masukkan User ID & buka <strong>1 kotak</strong> pilihan kamu!</p>' +
+              '<p class="text-white/60 text-xs">'+emojis.lock+' Setiap User ID hanya dapat membuka <strong class="text-yellow-300">1 kotak</strong></p>' +
+            '</div>' +
+            '<button id="startBtn" class="w-full max-w-xs mx-auto block px-10 py-5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-black rounded-full active:scale-95 transition-all duration-200 shadow-2xl text-xl animate-pulse" style="box-shadow:0 10px 40px rgba(251,191,36,.5);">'+
+                emojis.rocket+' MULAI SEKARANG'+
+            '</button>';
+        app.appendChild(d);
+        document.getElementById('startBtn').addEventListener('click', function() {
+            state.showWelcome = false; render();
+        });
+        return;
+    }
+
+    /* -------- LOGIN -------- */
+    if (!state.isLoggedIn) {
+        var d = document.createElement('div');
+        d.className = 'max-w-md w-full text-center relative z-10 px-4 fade-in';
+        d.innerHTML =
+            '<h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">'+emojis.gift+' Mystery Box</h1>' +
+            '<p class="text-purple-200 mb-8 text-sm">'+emojis.lock+' 1 User ID = 1 Kesempatan Membuka Kotak</p>' +
+            '<div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border-2 border-white/20">' +
+              '<label class="block text-white text-base font-semibold mb-3 text-left">User ID:</label>' +
+              '<input type="text" id="userInput" placeholder="Contoh: budi123" autocomplete="off" ' +
+                  'class="w-full px-5 py-4 rounded-2xl text-center text-base font-semibold bg-white text-purple-700 placeholder-purple-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 transition-all border-0" maxlength="50"/>' +
+              '<p id="loginError" class="text-red-300 text-sm mt-2 min-h-[1.25rem]"></p>' +
+              '<button id="loginBtn" class="w-full mt-4 px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold rounded-2xl active:scale-95 transition-all duration-200 shadow-xl text-base">'+
+                  emojis.game+' Masuk & Bermain'+
+              '</button>' +
+              '<p class="text-white/50 text-xs mt-4">'+emojis.warning+' Setiap ID hanya boleh membuka 1 kotak saja</p>' +
+            '</div>';
+        app.appendChild(d);
+
+        var loginBtn  = document.getElementById('loginBtn');
+        var userInput = document.getElementById('userInput');
+        var errEl     = document.getElementById('loginError');
+
+        function showErr(msg) {
+            errEl.textContent = msg;
+            userInput.classList.add('animate-shake');
+            setTimeout(function() {
+                userInput.classList.remove('animate-shake');
+            }, 500);
+        }
+
+        function doLogin() {
+            var uid = userInput.value.trim();
+            if (!uid) { showErr('Silakan masukkan User ID!'); return; }
+
+            // Cek apakah ID ini sudah pernah buka kotak sebelumnya
+            var saved = loadPrize(uid);
+
+            state.userId      = uid;
+            state.isLoggedIn  = true;
+            state.isAnimating = false;
+
+            if (saved) {
+                // Sudah pernah main — langsung tampilkan hasilnya, tidak bisa buka lagi
+                state.revealedPrize = saved;
+                state.hasOpened     = true;
+                state.isReturning   = true;
+                state.shuffledPrizes = [];
+            } else {
+                // Belum pernah main — acak kotak
+                state.revealedPrize  = null;
+                state.hasOpened      = false;
+                state.isReturning    = false;
+                state.shuffledPrizes = shuffle(prizes);
+            }
+            render();
+        }
+
+        loginBtn.addEventListener('click', doLogin);
+        userInput.addEventListener('keypress', function(e) { if (e.key==='Enter') doLogin(); });
+        setTimeout(function() { userInput.focus(); }, 100);
+        return;
+    }
+
+    /* -------- SEMUA HADIAH -------- */
+    if (state.showAllPrizes) {
+        var d = document.createElement('div');
+        d.className = 'max-w-2xl w-full px-4 fade-in';
+        var html =
+            '<h2 class="text-3xl sm:text-4xl font-bold text-white mb-4 text-center">'+emojis.gift+' Semua Hadiah Tersedia</h2>' +
+            '<p class="text-yellow-300 text-center mb-6 text-sm">Setiap kotak berisi hadiah berbeda — hanya 1 kesempatan per ID!</p>' +
+            '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">';
+        for (var i=0; i<prizes.length; i++) {
+            html +=
+                '<div class="bg-gradient-to-br '+prizes[i].color+' rounded-2xl p-5 shadow-xl border-2 border-white/30">' +
+                  '<div class="flex items-center justify-between mb-3">' +
+                    '<span class="px-3 py-1 bg-black/20 text-white text-xs font-bold rounded-full">'+prizes[i].category+'</span>' +
+                    '<span class="text-4xl">'+prizes[i].icon+'</span>' +
+                  '</div>' +
+                  '<h3 class="text-2xl font-bold text-white mb-1">'+prizes[i].title+'</h3>' +
+                  '<p class="text-white/80 text-xs font-medium">SCREENSHOT & KIRIM KE LIVECHAT</p>' +
+                '</div>';
+        }
+        html += '</div>' +
+            '<button id="backBtn" class="px-8 py-3 bg-white text-purple-700 font-bold rounded-full hover:bg-yellow-300 hover:text-purple-900 active:scale-95 transition-all shadow-xl text-sm mx-auto block">'+
+                emojis.back+' Kembali'+
+            '</button>';
+        d.innerHTML = html;
+        app.appendChild(d);
+        document.getElementById('backBtn').addEventListener('click', function() { state.showAllPrizes=false; render(); });
+        return;
+    }
+
+    /* -------- TAMPILKAN HASIL HADIAH -------- */
+    if (state.revealedPrize) {
+        var p = state.revealedPrize;
+        var d = document.createElement('div');
+        d.className = 'max-w-md w-full px-4 fade-in';
+
+        // Banner "sudah pernah main" — tampil jika login ulang dengan ID yang sama
+        var returningBanner = state.isReturning
+            ? '<div class="bg-orange-400/20 border-2 border-orange-400/50 rounded-2xl px-4 py-3 mb-4 text-center">' +
+                '<p class="text-orange-300 text-sm font-bold">'+emojis.lock+' User ID ini sudah pernah membuka kotak</p>' +
+                '<p class="text-white/60 text-xs mt-1">Ini adalah hadiah yang kamu dapatkan sebelumnya</p>' +
+              '</div>'
+            : '';
+
+        d.innerHTML =
+            returningBanner +
+            '<div class="bg-gradient-to-br '+p.color+' rounded-3xl p-8 sm:p-10 shadow-2xl border-4 border-yellow-300 relative overflow-hidden">' +
+                '<div style="position:absolute;top:12px;left:16px;font-size:2rem;animation:bounce 1s infinite;">'+emojis.party1+'</div>' +
+                '<div style="position:absolute;top:12px;right:16px;font-size:2rem;animation:bounce 1s .3s infinite;">'+emojis.party2+'</div>' +
+                '<div style="position:absolute;bottom:16px;left:20px;font-size:1.5rem;animation:bounce 1.5s .6s infinite;">'+emojis.star+'</div>' +
+                '<div class="relative z-10 text-center">' +
+                    '<p class="text-white/80 text-sm font-semibold mb-4">User ID: <strong>'+escHtml(state.userId)+'</strong></p>' +
+                    '<div class="flex justify-center mb-4">' +
+                        '<span class="px-4 py-2 bg-black/20 rounded-full text-white text-sm font-bold backdrop-blur-sm">'+p.category+'</span>' +
+                    '</div>' +
+                    '<div class="text-7xl mb-4 animate-bounce-slow">'+p.icon+'</div>' +
+                    '<h2 class="text-4xl sm:text-5xl font-black text-white mb-5 drop-shadow-lg">'+p.title+'</h2>' +
+                    '<div class="bg-black/20 rounded-2xl p-4 mb-6 backdrop-blur-sm border border-white/20">' +
+                        '<p class="text-white text-sm sm:text-base font-bold leading-relaxed">'+p.content+'</p>' +
+                    '</div>' +
+                    '<a href="'+CLAIM_URL+'" target="_blank" rel="noopener noreferrer" ' +
+                        'class="inline-block w-full px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-600 text-white font-black rounded-2xl active:scale-95 transition-all shadow-2xl text-lg mb-3">'+
+                        emojis.gift+' Claim Hadiah Sekarang!'+
+                    '</a>' +
+                    '<p class="text-white/60 text-xs mt-2">'+emojis.lock+' Gunakan User ID berbeda untuk mencoba lagi</p>' +
+                '</div>' +
+            '</div>';
+        app.appendChild(d);
+        return;
+    }
+
+    /* -------- GRID KOTAK (belum pernah buka) -------- */
+    var d = document.createElement('div');
+    d.className = 'max-w-2xl w-full text-center px-4 fade-in';
+    var html =
+        '<h1 class="text-3xl sm:text-4xl font-bold text-white mb-2">'+emojis.gift+' Kotak Hadiah Misteri</h1>' +
+        '<p class="text-yellow-300 mb-1 text-base font-semibold">Halo, <span class="text-white">'+escHtml(state.userId)+'</span>! '+emojis.wave+'</p>' +
+        // Peringatan 1 kesempatan — menonjol
+        '<div class="inline-flex items-center gap-2 bg-red-500/20 border-2 border-red-400/50 rounded-2xl px-5 py-3 mb-5">' +
+          '<span class="text-2xl">'+emojis.warning+'</span>' +
+          '<span class="text-white text-sm font-bold">Pilih dengan bijak! Kamu hanya punya <u class="text-yellow-300">1 kesempatan</u> membuka kotak.</span>' +
+        '</div>' +
+        '<div id="boxGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6"></div>' +
+        '<div class="flex gap-3 justify-center flex-wrap">' +
+          '<button id="showAllBtn" class="px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold rounded-full active:scale-95 transition-all shadow-xl text-sm">'+emojis.gift+' Lihat Semua Hadiah</button>' +
+        '</div>';
+    d.innerHTML = html;
+    app.appendChild(d);
+
+    var grid = document.getElementById('boxGrid');
+    for (var i=0; i<state.shuffledPrizes.length; i++) {
+        (function(prize, idx) {
+            var box = document.createElement('div');
+            box.className = 'relative transition-all duration-300 box-hover cursor-pointer';
+            box.setAttribute('data-idx', idx);
+            box.innerHTML =
+                '<div class="aspect-square rounded-2xl shadow-2xl flex flex-col items-center justify-center relative overflow-hidden border-4 bg-gradient-to-br from-orange-400 to-orange-600 border-yellow-300">' +
+                    '<div class="text-5xl sm:text-6xl text-white mb-2">'+emojis.gift+'</div>' +
+                    '<div class="text-yellow-200 font-black text-3xl">?</div>' +
+                    '<div style="position:absolute;top:6px;right:6px;font-size:1rem;" class="animate-spin-slow">'+emojis.sparkle+'</div>' +
+                    '<div style="position:absolute;bottom:6px;left:6px;font-size:1rem;" class="animate-spin-slow">'+emojis.sparkle+'</div>' +
+                '</div>';
+            box.addEventListener('click', function() { handleBoxClick(prize); });
+            grid.appendChild(box);
+        })(state.shuffledPrizes[i], i);
+    }
+
+    document.getElementById('showAllBtn').addEventListener('click', function() {
+        state.showAllPrizes = true; render();
+    });
+}
+
+// ============================================================
+// BUKA KOTAK — hanya 1 kali per User ID
+// ============================================================
+function handleBoxClick(prize) {
+    if (state.isAnimating || state.hasOpened) return;
+    state.isAnimating = true;
+
+    // Kunci semua kotak saat animasi
+    document.querySelectorAll('#boxGrid > div').forEach(function(b) {
+        b.classList.add('box-locked');
+    });
+
+    // Overlay loading
+    var overlay = document.createElement('div');
+    overlay.id = 'openOverlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9998;display:flex;align-items:center;justify-content:center;';
+    overlay.innerHTML =
+        '<div class="text-center px-6">' +
+          '<div class="text-8xl animate-spin-slow mb-6">'+emojis.gift+'</div>' +
+          '<p class="text-white text-2xl font-black animate-blink mb-2">Membuka Kotak...</p>' +
+          '<p class="text-yellow-300 text-sm">Semoga beruntung!</p>' +
+        '</div>';
+    document.body.appendChild(overlay);
+
+    setTimeout(function() {
+        var ov = document.getElementById('openOverlay');
+        if (ov) document.body.removeChild(ov);
+
+        state.revealedPrize = prize;
+        state.hasOpened     = true;
+        state.isAnimating   = false;
+        state.isReturning   = false;
+
+        // Simpan ke localStorage — ID ini tidak bisa buka lagi
+        savePrize(state.userId, prize);
+
+        render();
+    }, 1400);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderBg();
+render();
+</script>
+</body>
+</html>
